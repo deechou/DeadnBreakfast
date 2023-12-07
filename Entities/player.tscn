@@ -103,7 +103,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0v03"]
-size = Vector2(15, 15)
+size = Vector2(15.5, 15)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -114,14 +114,13 @@ script = ExtResource("1_ykf2x")
 speed = 70
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -1)
 texture = ExtResource("1_fc1je")
 offset = Vector2(0, -8)
 hframes = 4
 vframes = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, -2.5)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_75jkb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -132,6 +131,8 @@ libraries = {
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0.5, -8.5)
+position = Vector2(0.25, -7.5)
 shape = SubResource("RectangleShape2D_c0v03")
 debug_color = Color(0.956863, 0.192157, 0.188235, 0.419608)
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

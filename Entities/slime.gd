@@ -34,13 +34,13 @@ func updateAnimation():
 func _physics_process(_delta):
 	updateAnimation()
 	move_and_slide()
-	handleCollision()
+#	handleCollision()
 	
-func handleCollision():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		print_debug(collider.name)
+#func handleCollision():
+#	for i in get_slide_collision_count():
+#		var collision = get_slide_collision(i)
+#		var collider = collision.get_collider()
+#
 
 func _on_timer_timeout():
 	updateVelocity()

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3dqlej4r3ddd"]
+
+[ext_resource type="PackedScene" uid="uid://d2ltuyipjlihh" path="res://Gui/heart_container.tscn" id="1_qqcyc"]
+[ext_resource type="Script" path="res://Gui/hud.gd" id="1_u815t"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_u815t")
+
+[node name="HeartContainer" parent="." instance=ExtResource("1_qqcyc")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
