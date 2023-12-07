@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bp76qt2olp7cf"]
+[gd_scene load_steps=14 format=3 uid="uid://bp76qt2olp7cf"]
 
 [ext_resource type="Texture2D" uid="uid://bdnytl8yvykls" path="res://Assets/Actor/Characters/GreenNinja/SpriteSheet.png" id="1_fc1je"]
 [ext_resource type="Script" path="res://Entities/player.gd" id="1_ykf2x"]
@@ -105,6 +105,45 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0v03"]
 size = Vector2(15.5, 15)
 
+[sub_resource type="Animation" id="Animation_mjvmw"]
+resource_name = "blinkRed"
+length = 0.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.0003, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_60xgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ebdb0"]
+_data = {
+"RESET": SubResource("Animation_60xgx"),
+"blinkRed": SubResource("Animation_mjvmw")
+}
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -114,12 +153,21 @@ script = ExtResource("1_ykf2x")
 speed = 70
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+clip_children = 2
 texture = ExtResource("1_fc1je")
 offset = Vector2(0, -8)
 hframes = 4
 vframes = 7
 
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = -11.0
+offset_top = -18.0
+offset_right = 11.0
+offset_bottom = 4.0
+color = Color(1, 0, 0, 0)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_75jkb")
 
@@ -131,8 +179,17 @@ libraries = {
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 position = Vector2(0.25, -7.5)
 shape = SubResource("RectangleShape2D_c0v03")
 debug_color = Color(0.956863, 0.192157, 0.188235, 0.419608)
+
+[node name="Effects" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ebdb0")
+}
+
+[node name="EffectsTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

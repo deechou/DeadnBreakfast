@@ -220,7 +220,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wyv6p"]
-size = Vector2(16, 8)
+size = Vector2(12, 5)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lx1a7"]
 radius = 5.0
@@ -248,7 +248,7 @@ wait_time = 4.0
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
+position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_wyv6p")
 
 [node name="Hitbox" type="Area2D" parent="."]

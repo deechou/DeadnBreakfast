@@ -2751,6 +2751,7 @@ layer_2/tile_data = PackedInt32Array(65541, 1, 0, 65549, 1, 0, 393224, 1, 0, 393
 position = Vector2(72, 68)
 
 [node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+position_smoothing_enabled = true
 script = ExtResource("5_4ev82")
 tilemap = NodePath("../../TileMap")
 
