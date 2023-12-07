@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp76qt2olp7cf"]
+[gd_scene load_steps=11 format=3 uid="uid://bp76qt2olp7cf"]
 
 [ext_resource type="Texture2D" uid="uid://bdnytl8yvykls" path="res://Assets/Actor/Characters/GreenNinja/SpriteSheet.png" id="1_fc1je"]
 [ext_resource type="Script" path="res://Entities/player.gd" id="1_ykf2x"]
@@ -102,6 +102,9 @@ _data = {
 "walkUp": SubResource("Animation_io26j")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0v03"]
+size = Vector2(15, 15)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -125,3 +128,10 @@ shape = SubResource("RectangleShape2D_75jkb")
 libraries = {
 "": SubResource("AnimationLibrary_4n48q")
 }
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0.5, -8.5)
+shape = SubResource("RectangleShape2D_c0v03")
+debug_color = Color(0.956863, 0.192157, 0.188235, 0.419608)
