@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://dap8lotq5xp8b"]
+
+[ext_resource type="Script" path="res://Inventory/inventory_item.gd" id="1_0kuh5"]
+[ext_resource type="Texture2D" uid="uid://f381xmawbgit" path="res://Assets/Items/Weapons/Katana/Sprite.png" id="2_qg0on"]
+
+[resource]
+script = ExtResource("1_0kuh5")
+name = "Katana"
+texture = ExtResource("2_qg0on")

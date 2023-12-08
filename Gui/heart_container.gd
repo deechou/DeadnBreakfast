@@ -2,18 +2,8 @@ extends HBoxContainer
 
 @onready var HeartScene = preload("res://Gui/heart.tscn")
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-func setMaxHearts(max: int):
-	for i in range(max):
+func setMaxHearts(maxHearts: int):
+	for i in range(maxHearts):
 		var heart = HeartScene.instantiate()
 		add_child(heart)
 

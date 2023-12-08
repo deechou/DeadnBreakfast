@@ -3,7 +3,9 @@ extends Node
 signal healthStatChange
 signal utilityStatChange
 
-var playerMaxHealth: int = 8:
+@onready var playerInventory: Inventory = preload("res://Inventory/player_inventory.tres")
+
+var playerMaxHealth: int = 5:
 	set(value):
 		playerMaxHealth = value
 		healthStatChange.emit()
@@ -18,4 +20,7 @@ var fasterRunWalk: float = 1.0:
 		fasterRunWalk = value
 		utilityStatChange.emit()
 
-
+var inventorySize = 15:
+	set(value):
+		inventorySize = value
+		utilityStatChange.emit()

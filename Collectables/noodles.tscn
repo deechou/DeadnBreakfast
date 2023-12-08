@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://blbkkg5roo2j"]
+
+[ext_resource type="PackedScene" uid="uid://ctdmiasio1bm8" path="res://Collectables/collectable.tscn" id="1_3hs3l"]
+[ext_resource type="Resource" uid="uid://e0qn6aja2p3f" path="res://Inventory/Items/noodles.tres" id="2_al6w6"]
+[ext_resource type="Texture2D" uid="uid://bb1n3rjqtmd26" path="res://Assets/Items/Food/Noodle.png" id="2_k63px"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_loxcs"]
+radius = 7.0
+
+[node name="Noodles" instance=ExtResource("1_3hs3l")]
+itemResource = ExtResource("2_al6w6")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_loxcs")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_k63px")

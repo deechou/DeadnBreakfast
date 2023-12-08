@@ -1,12 +1,16 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkpsdn5h42plu"]
+[gd_scene load_steps=17 format=3 uid="uid://bkpsdn5h42plu"]
 
+[ext_resource type="Script" path="res://Scenes/world.gd" id="1_gagr3"]
 [ext_resource type="PackedScene" uid="uid://bp76qt2olp7cf" path="res://Entities/player.tscn" id="1_ngxcw"]
 [ext_resource type="Texture2D" uid="uid://byo84j5f3gmm0" path="res://Assets/Backgrounds/Tilesets/TilesetFloor.png" id="2_frxu2"]
 [ext_resource type="Texture2D" uid="uid://c1fkuksq3sy5u" path="res://Assets/Backgrounds/Tilesets/TilesetNature.png" id="2_u1i3p"]
 [ext_resource type="Texture2D" uid="uid://83ufpn6amo1k" path="res://Assets/Backgrounds/Animated/Plant/SpriteSheet16x16.png" id="3_6i2ec"]
 [ext_resource type="Script" path="res://Scenes/FollowCam.gd" id="5_4ev82"]
+[ext_resource type="PackedScene" uid="uid://ba4n0jefcemwk" path="res://Collectables/health_pot.tscn" id="5_l4yhh"]
 [ext_resource type="PackedScene" uid="uid://dal0owsuv2sed" path="res://Entities/slime.tscn" id="6_8ia5o"]
+[ext_resource type="PackedScene" uid="uid://cyyphkcjgst4p" path="res://Collectables/sword.tscn" id="6_q67v1"]
 [ext_resource type="PackedScene" uid="uid://b3dqlej4r3ddd" path="res://Gui/hud.tscn" id="7_2oaxd"]
+[ext_resource type="PackedScene" uid="uid://blbkkg5roo2j" path="res://Collectables/noodles.tscn" id="7_pvlhj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7alj3"]
 texture = ExtResource("2_frxu2")
@@ -2714,17 +2718,26 @@ texture = ExtResource("3_6i2ec")
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -1.25, 8, -1.25, 8, 8, -8, 8)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_tk13t"]
+resource_name = "Collectables"
+scenes/4/scene = ExtResource("6_q67v1")
+scenes/5/scene = ExtResource("5_l4yhh")
+scenes/6/scene = ExtResource("7_pvlhj")
+
 [sub_resource type="TileSet" id="TileSet_ep6kd"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 8
+physics_layer_0/collision_mask = 7
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Sand"
 terrain_set_0/terrain_0/color = Color(0.662745, 0.0666667, 0.494118, 1)
 sources/0 = SubResource("TileSetAtlasSource_7alj3")
 sources/1 = SubResource("TileSetAtlasSource_6d5pg")
 sources/2 = SubResource("TileSetAtlasSource_sffhb")
+sources/3 = SubResource("TileSetScenesCollectionSource_tk13t")
 
 [node name="World" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_gagr3")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -2745,22 +2758,42 @@ layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 1
-layer_2/tile_data = PackedInt32Array(65541, 1, 0, 65549, 1, 0, 393224, 1, 0, 393217, 2, 0, 393218, 2, 0, 524301, 2, 0, 458766, 2, 0, 0, 2, 0, 983056, 1, 0, 589847, 1, 0)
+layer_2/tile_data = PackedInt32Array(65541, 1, 0, 65549, 1, 0, 393224, 1, 0, 393217, 2, 0, 393218, 2, 0, 524301, 2, 0, 458766, 2, 0, 0, 2, 0, 983056, 1, 0, 589847, 1, 0, 720901, 1, 0)
+layer_3/name = "Collectibles"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = false
+layer_3/y_sort_origin = 0
+layer_3/z_index = 0
+layer_3/tile_data = PackedInt32Array(786439, 3, 262144, 524304, 3, 262144, 720912, 3, 262144, 196627, 3, 262144, 131088, 3, 262144, 720909, 3, 327680, 589828, 3, 327680, 327696, 3, 327680, 393237, 3, 327680, 458776, 3, 327680, 720921, 3, 327680, 589835, 3, 393216, 589844, 3, 393216, 917514, 3, 393216)
 
-[node name="Player" parent="." instance=ExtResource("1_ngxcw")]
+[node name="Player" parent="TileMap" instance=ExtResource("1_ngxcw")]
 position = Vector2(72, 68)
 
-[node name="FollowCam" type="Camera2D" parent="Player" node_paths=PackedStringArray("tilemap")]
+[node name="FollowCam" type="Camera2D" parent="TileMap/Player" node_paths=PackedStringArray("tilemap")]
 position_smoothing_enabled = true
 script = ExtResource("5_4ev82")
-tilemap = NodePath("../../TileMap")
+tilemap = NodePath("../..")
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Slime2" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(94, 125)
 
-[node name="Slime2" parent="Enemies" instance=ExtResource("6_8ia5o")]
-position = Vector2(88, 79)
+[node name="Slime3" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(157, 173)
 
-[node name="Slime" parent="Enemies" instance=ExtResource("6_8ia5o")]
-position = Vector2(39, 80)
+[node name="Slime4" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(294, 126)
+
+[node name="Slime5" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(351, 88)
+
+[node name="Slime6" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(370, 191)
+
+[node name="Slime" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(194, 80)
+
+[node name="Slime7" parent="TileMap" instance=ExtResource("6_8ia5o")]
+position = Vector2(131, 105)
 
 [node name="HUD" parent="." instance=ExtResource("7_2oaxd")]

@@ -6,6 +6,21 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_75jkb"]
 size = Vector2(15, 3)
 
+[sub_resource type="Animation" id="Animation_vffnu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_7aqqh"]
 resource_name = "walkDown"
 length = 0.8
@@ -22,21 +37,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 0), Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_vffnu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_vxawp"]
@@ -103,7 +103,22 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0v03"]
-size = Vector2(15.5, 15)
+size = Vector2(14, 13)
+
+[sub_resource type="Animation" id="Animation_60xgx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_mjvmw"]
 resource_name = "blinkRed"
@@ -123,21 +138,6 @@ tracks/0/keys = {
 "values": [Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 0, 0, 0.415686), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_60xgx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ebdb0"]
 _data = {
 "RESET": SubResource("Animation_60xgx"),
@@ -148,7 +148,7 @@ _data = {
 z_index = 1
 y_sort_enabled = true
 texture_filter = 1
-collision_mask = 63
+collision_mask = 62
 script = ExtResource("1_ykf2x")
 speed = 70
 
@@ -179,8 +179,7 @@ libraries = {
 [node name="HurtBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-visible = false
-position = Vector2(0.25, -7.5)
+position = Vector2(0, -6.5)
 shape = SubResource("RectangleShape2D_c0v03")
 debug_color = Color(0.956863, 0.192157, 0.188235, 0.419608)
 
@@ -193,3 +192,4 @@ libraries = {
 one_shot = true
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]

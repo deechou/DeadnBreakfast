@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba4n0jefcemwk"]
+
+[ext_resource type="PackedScene" uid="uid://ctdmiasio1bm8" path="res://Collectables/collectable.tscn" id="1_cg1x8"]
+[ext_resource type="Texture2D" uid="uid://dw4xrj813igo4" path="res://Assets/Items/Potion/LifePot.png" id="2_26ks5"]
+[ext_resource type="Resource" uid="uid://b6pmbxn0pigen" path="res://Inventory/Items/healthPot.tres" id="2_sdcla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jwyy"]
+resource_local_to_scene = true
+size = Vector2(8, 10)
+
+[node name="HealthPot" instance=ExtResource("1_cg1x8")]
+itemResource = ExtResource("2_sdcla")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_1jwyy")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_26ks5")
