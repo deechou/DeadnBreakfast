@@ -14,7 +14,7 @@ func _ready():
 func update():
 	var slots = gridContainer.get_children()
 	for i in range(Globals.inventorySize):
-		slots[i].update(Globals.playerInventory.items[i])
+		slots[i].update(Globals.playerInventory.inventorySlots[i])
 
 func open():
 	visible = true

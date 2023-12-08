@@ -5,7 +5,7 @@ signal utilityStatChange
 
 @onready var playerInventory: Inventory = preload("res://Inventory/player_inventory.tres")
 
-var playerMaxHealth: int = 5:
+var playerMaxHealth: int = 10:
 	set(value):
 		playerMaxHealth = value
 		healthStatChange.emit()
